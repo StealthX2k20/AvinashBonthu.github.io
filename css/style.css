@@ -2,11 +2,10 @@ body{
 
 	background: #F4F4F4;
 	margin: 0;
-	background-image: url(../images/image.jpg);
+	background-image: url(../images/image1.jpg);
 	background-repeat: no-repeat;
 	animation-name: mymove;
 	background-size:100% 100%;
-	background-:  
 }
 
 
@@ -30,6 +29,9 @@ body{
 .header{
 
 	padding: 45px 0 20px 40px;
+	animation-name: slidein;
+	animation-duration: 3s;
+	font-family: "Lucida Sans unicode","Myriad Pro";
 
 }
 
@@ -57,7 +59,23 @@ aside{
 
 	float:left;
 	width:120px;
-	padding:30px 0 0 40px;
+	padding :30px 50px 0 0;
+	text-align: center;
+}
+aside li{
+
+	float:left;
+	width:100px;
+	padding:10px 0 0 0;
+	border-bottom: 1px solid #60b6d0;
+	list-style-type: none;
+	animation-name: slideto;
+	animation-duration: 2s;
+}
+aside li a{
+
+	text-decoration: none;
+	color:grey;
 }
 
 h1{
@@ -67,6 +85,7 @@ h1{
 	font-size: 24px;
 	font-family: "Arial Narrow","Myriad Pro";
 	font-weight: normal;
+	animation-duration: 3s;
 }
 
 h2{
@@ -97,6 +116,7 @@ h2{
 
 	width: 100%;
 
+
 }
 
 
@@ -109,6 +129,11 @@ footer{
 	text-decoration: right;
 }
 
+footer .footer-image{
+
+	width:20px;
+	padding-top:6px;
+}
 
 footer a{
 
@@ -127,6 +152,10 @@ footer a{
 
 
 /*about page*/
+#about-page{
+
+	background-image: url("../images/image7.jpg");
+}
 
 #about-page #home-image img{
 
@@ -197,8 +226,35 @@ footer a{
 
 }
 
+#hotel-name{
 
+	font-family:"Lucida Handwriting";
+	font-weight: 800;
+	font-size: 50px;
+}
 
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
 
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes slideto {
+  from {
+    margin-right: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
 
 
