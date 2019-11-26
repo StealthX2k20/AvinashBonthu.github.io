@@ -7,13 +7,26 @@ body{
 	animation-name: mymove;
 	background-size:100% 100%;
 }
+#dosa{
 
+	background-image: url(../images/image9.jpg);
+}
+
+#sambar{
+	background-image: url(../images/image10.jpg);
+}
+#paneer{
+
+	background-image: url(../images/image12.jpg);
+}
 
 .link-title{
 
 	text-decoration: none;
 	font-size: 24px;
 	color:#444444;
+	animation-name: slidein;
+	animation-duration: 3s;
 }
 
 
@@ -29,11 +42,13 @@ body{
 .header{
 
 	padding: 45px 0 20px 40px;
-	animation-name: slidein;
-	animation-duration: 3s;
+	/*animation-name: slidein;
+	animation-duration: 3s;*/
 	font-family: "Lucida Sans unicode","Myriad Pro";
+	background-color: #9cffc9;
 
 }
+
 
 .menu{
 
@@ -76,6 +91,10 @@ aside li a{
 
 	text-decoration: none;
 	color:grey;
+}
+
+aside a:hover{
+	color:#00CCFF;
 }
 
 h1{
