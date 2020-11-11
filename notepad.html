@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Editor</title>
+	<link rel="stylesheet" type="text/css" href="./styles_notepad.css">
+</head>
+
+<body>
+    <h1>DASH</h1>
+
+    <div class="main_textareas">
+        <textarea onblur="this.focus()" id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
+        <textarea rows="2000" cols="3000" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
+    </div>
+    <div class="io_boxes">
+    	<div>
+    	<textarea rows="100" cols="500" id="input_text" placeholder="INPUT..."></textarea>
+    </div>
+    <div>
+    	<textarea rows="500" cols="500" id="output_text" placeholder="OUTPUT..."></textarea>
+
+    </div>
+    </div>
+
+    <div class="button_div">
+    	<button type="button" class="button"><i>EXECUTE</i></button>
+    </div>
+    
+
+</body>
+<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+<script type="text/javascript" src="line_numbering.js"></script>
+<script src="./client.js"></script>
+
+</html>
