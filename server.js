@@ -10,7 +10,7 @@ let server = http.createServer(app);
 let io = socketIO(server);
 let users = new Users();
 const {isRealString} = require('./isRealString');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 9352;
 
 
 
