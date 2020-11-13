@@ -1,9 +1,33 @@
+.select_div {
+  margin-left: 640px;
+  border:3px solid #24292e;
+  border-radius: 1px;
+  width:150px;
+}
+.select {
+  display: inline-block;
+  text-align: center;
+  text-align-last: center; 
+  font-weight: bolder;
+  width: 150px;
+  padding: 1px 1px 1px 1px;
+  border-radius: 1px;
+}
+.select:focus{
+  outline:0;
+}
+
+
 .main_textarea {
   display: inline-block;
+}
+textarea:focus{
+  outline:0;
 }
 
 #line_numbering_area {
   display: inline-block;
+  position: absolute;
   resize: none;
   width:2%;
   height: 500px;
@@ -12,9 +36,12 @@
   text-align: right;
   overflow: hidden;
   font-size: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px
 }
 #editor {
 	display: inline-block;
+  position: relative;
 	resize: none;
 	width: 57.8%;
 	height: 500px;
@@ -24,26 +51,29 @@
 	overflow-y: auto;
   overflow-x: auto;
   white-space: nowrap;
-  margin-right: 2px;
+  margin-left: 33px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px
 }
 
 .io_boxes {
 	display: inline-block;
-  width: 61%;
+  width: 60.7%;
 }
 
 #input_text {
   display: inline-block;
   position: absolute;
 	resize: none;
-  margin-left:37px;
-	width: 370px;
+  /*margin-left:37px;*/
+	width: 390px;
 	height: 100px;
 	background-color: #24292e;
 	color: white;
 	overflow-y: auto;
   overflow-x: auto;
   white-space: nowrap;
+  border-radius: 10px;
 }
 
 #output_text {
@@ -52,17 +82,22 @@
   margin-left:37px;
   float: right;
 	resize: none;
-	width: 370px;
+	width: 390px;
 	height: 100px;
 	background-color: #24292e;
 	color: white;
 	overflow-y: auto;
   overflow-x: auto;
-  white-space: nowrap;  
+  white-space: nowrap; 
+  border-radius: 10px; 
+}
+
+button:focus {
+  outline:0;
 }
 
 .button_div {
-  display: block;
+  display: inline-block;
   width: 61%;
   align-items: center;
 }
@@ -79,7 +114,7 @@
   padding: 15px;
   margin-top: 2px;
   float: right;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   transition: all .2s;
   position: relative;
   overflow: hidden;
@@ -116,6 +151,59 @@
 }
 
 .button:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.end_btn {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid white;
+  font-weight: bold;
+  border-radius: 10rem;
+  background-color: #24292e;
+  color: white;
+  box-shadow: 5px 5px 5px 2px #24292e;
+  padding: 15px;
+  margin-top: 2px;
+  font-size: 0.9rem;
+  transition: all .2s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.end_btn:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #24292e;
+  border-radius: 10rem;
+  z-index: -2;
+}
+.end_btn:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.2s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+.end_btn:hover {
+  color: #24292e;
+}
+.end_btn:hover:before {
+  width: 100%;
+}
+
+.end_btn:active {
   -webkit-transform: translateY(-1px);
           transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);

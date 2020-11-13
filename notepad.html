@@ -6,10 +6,22 @@
 </head>
 
 <body>
-    <h1>DASH</h1>
+        <h1>DASH</h1>
+        <div class="select_div">
+            <select class="select" id="language">
+            <option disabled="disabled" visibility="hidden">Select an option.</option>
+            <option value="C"><b>C</b></option>
+            <option value="C++" selected><b>C++</b></option>
+            <option value="Java"><b>Java</b></option>
+            <option value="Python"><b>Python</b></option>
+            </select>
+        </div>
+        
+        
+    
 
     <div class="main_textareas">
-        <textarea onblur="this.focus()" id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
+        <textarea id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
         <textarea rows="2000" cols="3000" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
     </div>
     <div class="io_boxes">
@@ -23,12 +35,19 @@
     </div>
 
     <div class="button_div">
-    	<button type="button" class="button"><i>EXECUTE</i></button>
+        <button type="reset" class="end_btn" onclick="confirmation()"><i>END MEET</i></button>
+    	<button type="button" class="button" ><i>EXECUTE</i></button>
     </div>
-    
+    <script type="text/javascript"> 
+        function confirmation() {
+            if(confirm("Do you want to leave the page"))
+                window.close()
+            
+        }
+    </script>
 
 </body>
-<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="./socket.io/socket.io.js"></script>
 <script type="text/javascript" src="line_numbering.js"></script>
 <script src="./client.js"></script>
 

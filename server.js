@@ -1,8 +1,5 @@
-//import RemoteCursor from './remoteCursor'
-//const {RemoteCursor} = require('./remoteCursor');
 const log = console.log;
 const path = require('path');
-// initialize http server, socket.io and port number
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
@@ -13,11 +10,9 @@ let server = http.createServer(app);
 let io = socketIO(server);
 let users = new Users();
 const {isRealString} = require('./isRealString');
-//.createServer()
-//const io = require('socket.io')(http);
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-//let remoteCursor = new RemoteCursor();
+
 
 app.use(express.static(public_path));
 
@@ -49,8 +44,6 @@ io.on('connection', (socket) => {
 	})
     
 })
-
-
 
 
 server.listen(port, () => log(`server listening on port: ${port}`))
