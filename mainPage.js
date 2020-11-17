@@ -7,9 +7,21 @@ function uuidv4() {
 
 function meetid() {
 			const roomid = uuidv4()
-			alert("Room Id: "+ roomid)
+			// alert("Room Id: "+ roomid)
+			document.getElementById("room_input").value = roomid;
 		}
 
 document.getElementById('create_btn').addEventListener('click', function() {
 	meetid();
+})
+
+function myFunction() {
+  var copyText = document.getElementById("room_input");
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+
+document.getElementById('copy_btn').addEventListener('click', function() {
+	myFunction();
 })

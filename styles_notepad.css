@@ -1,5 +1,5 @@
 .select_div {
-  margin-left: 640px;
+  margin-left: 653px;
   border:3px solid #24292e;
   border-radius: 1px;
   width:150px;
@@ -11,7 +11,6 @@
   font-weight: bolder;
   width: 150px;
   padding: 1px 1px 1px 1px;
-  border-radius: 1px;
 }
 .select:focus{
   outline:0;
@@ -36,8 +35,6 @@ textarea:focus{
   text-align: right;
   overflow: hidden;
   font-size: 15px;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px
 }
 #editor {
 	display: inline-block;
@@ -52,8 +49,6 @@ textarea:focus{
   overflow-x: auto;
   white-space: nowrap;
   margin-left: 33px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px
 }
 
 .io_boxes {
@@ -73,7 +68,6 @@ textarea:focus{
 	overflow-y: auto;
   overflow-x: auto;
   white-space: nowrap;
-  border-radius: 10px;
 }
 
 #output_text {
@@ -89,7 +83,6 @@ textarea:focus{
 	overflow-y: auto;
   overflow-x: auto;
   white-space: nowrap; 
-  border-radius: 10px; 
 }
 
 button:focus {

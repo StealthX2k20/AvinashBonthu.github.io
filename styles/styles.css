@@ -3,45 +3,60 @@
 
 .body_class {
 	margin: 0px;
+	height: 100%;
+	overflow-y: none;
+	background-color: #FFFFFf;
 }
 
 .header_division_class {
 	background-color: #24292e;
+	display: inline-block;
 }
 
 .header_class {
 	height: 80px;
+	width: 100%;
 }
 
-label.logo{
-	line-height: 80px;
-	padding: 0 100px;
+.logo{
+	display: inline-block;
 }
 
 .image_class {
-	width: 10%;
-	margin-top: 30px;
-}
-
-nav ul {
-	float: right;
+	width: 11%;
+	margin-top: 20px;
+	margin-bottom: 25px;
+	margin-left: 10px;
 }
 
 nav ul li {
 	list-style: none;
-	box-sizing: border-box;
+}
+.list_navigation {
 	display: inline-block;
-	line-height: 60px;
+	margin-left: 900px;
+}
+
+#aboutUs {
+	list-style: none;
+	float: right;
+	position: absolute;	
+	display: inline-block; 
+	margin-bottom: 12px;
+}
+#contact {
+	list-style: none;
+	float: right;
 	position: relative;
-	margin : 0 10px;
+	display: inline-block;
+	margin-left: 102px;
+	margin-bottom: 12px;
 }
 
 .nav_link_class {
 	text-decoration: none;
 	font-family: "Lucida Console", Courier, monospace;
-	margin:5px;
-	padding: 15px;
-	border: 1px solid #24292e;
+	padding: 10px 15px 10px 15px;
 	border-radius: 30px;
 	color: white;
 	font-weight: bold;
@@ -53,45 +68,101 @@ nav ul li {
 }
 
 .main_body_class {
-	box-sizing: border-box;
-	height: 450px;
+	/*height: 300px;*/
+	display: inline-block;
 	width: 100%;
-	background-color:#24292e;
 }
 
 .main_body_class div {
 	display: inline-block;
-	text-align: center;
+	/*text-align: center;*/
+}
+
+#heading_div {
+	display: inline-block;
+	margin-top: 70px;
+	margin-left: 60px;
+	font-size: 2rem;
+	color: #24292e;
+	font-family: sans-serif;
+}
+#description_div {
+	display: block;
+	width: 45%;
+	margin-left: 60px;
+	color: #5f6368;
+	font-size: 1.125rem;
+	font-weight: 400;
+	font-family: 'Google Sans',Roboto,Arial,sans-serif;
 }
 
 .sign_in_class {
-	clear: both;
-	position:relative;
-	border: 1px solid white;
-	width: 450px;
-	height: 200px;
-	background-color: white;
-	margin-top: 100px;
-	margin-left: 200px;
-	border-radius: 80px;
+	/*display: inline-block;*/
+	box-sizing: border-box;
+	width: auto;
+	height: auto;
+	position: absolute;
+	margin-left: 50px;
+	margin-top: 20px;
+	
 }
 
 .sign_up_class {
-	clear: both;
-	position: absolute;
-	border: 1px solid white;
-	width: 450px;
-	height: 200px;
-	background-color: white;
-	margin-top: 100px;
-	margin-left: 15px;
-	border-radius: 80px;
+	/*display: inline-block;*/
+	box-sizing: border-box;
+	width: auto;
+	height: auto;
+	position: relative;
+	margin-left: 220px;
+	margin-top: 20px;
+	font-family: sans-serif;
+	
 }
 
-.main_body_class p {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 35px;
+#main_image {
+	display: inline-block;
+	/*position: relative;*/
+	width: 620px;
+	float: right;
+	margin-right: 25px;
+	/*margin-left: 500px;*/
+	margin-top: 55px;
+	/*margin-bottom: 200px;*/
+}
+
+#main_image img {
+	width:620px;
+	border-radius: 25px;
+}
+
+#room_id {
+	display: inline-block;
+	width: 440px;
+	margin-left: 51px;
+	margin-top: 10px;
+	/*margin-bottom: 100px;*/
+	background-color:#d9dddc;
+	border: 2px solid #777b7e;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#room_id button {
+	display: inline-block;
+	height: 35px;
+	
+}
+
+#room_id label {
 	color: #24292e;
+	font-size: 1.3rem;
+	font-family: fantasy;
+}
+#room_id input {
+	width: 300px;
+	height: 30px;
+	color: #24292e;
+	font-size:1.1rem;
 }
 
 .button {
@@ -102,10 +173,11 @@ nav ul li {
   border-radius: 10rem;
   background-color: #24292e;
   color: white;
-  box-shadow: 10px 10px 10px 5px #24292e;
-  padding: 25px;
-  font-size: 1.3rem;
-  transition: all .3s;
+  box-shadow: 5px 5px 5px 2px #24292e;
+  padding: 20px;
+  /*width: 200px;*/
+  font-size: 1rem;
+  transition: all .2s;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -145,21 +217,15 @@ nav ul li {
           transform: translateY(-1px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-
-.discription_class {
-	margin: 50px;
-	margin-top: 200px;
-	height: 410px;
-	background-color: #24292e;
-	border: 1px solid #24292e;
-	border-radius: 100px;
+.button:focus{
+  outline:0;
 }
-
+/*
 .footer_class {
-	height: 150px;
+	height: 80px;
 	background-color: #24292e;
 	margin-top: 200px;
 }
-
+*/
 
 
