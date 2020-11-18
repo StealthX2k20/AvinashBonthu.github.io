@@ -11,9 +11,9 @@
             <select class="select" id="language">
             <option disabled="disabled" visibility="hidden">Select an option.</option>
             <option value="C"><b>C</b></option>
-            <option value="C++" selected><b>C++</b></option>
+            <option value="C++ 14" selected><b>C++</b></option>
             <option value="Java"><b>Java</b></option>
-            <option value="Python"><b>Python</b></option>
+            <option value="python3"><b>Python</b></option>
             </select>
         </div>
         
@@ -22,7 +22,7 @@
 
     <div class="main_textareas">
         <textarea id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
-        <textarea rows="2000" cols="3000" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
+        <textarea rows="20" cols="30" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
     </div>
     <div class="io_boxes">
     	<div>
@@ -36,7 +36,7 @@
 
     <div class="button_div">
         <button type="reset" class="end_btn" onclick="confirmation()"><i>EXIT MEET</i></button>
-    	<button type="button" class="button" ><i>EXECUTE</i></button>
+    	<button type="button" class="button" id="execute"><i>EXECUTE</i></button>
     </div>
     <script type="text/javascript"> 
         function confirmation() {

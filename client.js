@@ -19,11 +19,11 @@ function scrollToBottom2() {
 	textarea.scrollTop = textarea.scrollHeight;
 }
 scrollToBottom2();
-function scrollToRight() {
-	var textarea = document.getElementById('editor');
-	textarea.scrollLeft = textarea.scrollWidth;
-}
-scrollToRight();
+// function scrollToRight() {
+// 	var textarea = document.getElementById('editor');
+// 	textarea.scrollLeft = textarea.scrollWidth;
+// }
+// scrollToRight();
 
 
 
@@ -47,6 +47,20 @@ const editor = getEl("editor")
 const output = getEl("output_text")
 const input = getEl("input_text")
 const language = getEl("language")
+
+document.querySelector("#execute").addEventListener('click',(evt)=>{
+	const code = editor.value;
+	const inp = input.value;
+	const lang = language.value
+	console.log(code)
+	socket.emit('news',{code,inp,lang})
+	socket.on('output', (msg)=> {
+		console.log(msg.output)
+		output.value = msg.output
+	})
+	//compile(code)
+})
+
 
 language.addEventListener('change', (evt3) => {
 	const text = language.value
@@ -80,6 +94,5 @@ socket.on('message', (data) => {
 	scrollToBottom();
 	scrollToBottom1();
 	scrollToBottom2();
-	scrollToRight();
 })
 

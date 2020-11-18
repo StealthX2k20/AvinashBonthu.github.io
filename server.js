@@ -11,6 +11,8 @@ let io = socketIO(server);
 let users = new Users();
 const {isRealString} = require('./isRealString');
 const port = process.env.PORT || 3000;
+const request = require('request');
+
 
 
 
@@ -38,6 +40,40 @@ io.on('connection', (socket) => {
         let user = users.getUser(socket.id);
         socket.broadcast.to(user.room).emit('message', evt)
     })
+    function compile(code, input, language) {
+	//var code = document.querySelector("#editor").value;
+	
+	var program = {
+    script: `${code}` ,
+    stdin: `${input}`,
+    language: "python3",
+    versionIndex: "0",
+    clientId: "78ac5a00ef4dc94e4560bcf2f7587869",
+    clientSecret:"13edd9c3d46c9ec50ae774c6fa5bcc65c24117b87be1b4e19d7edcaf4deb6225"
+	};
+	request({
+	    url: 'https://api.jdoodle.com/v1/execute',
+	    method: "POST",
+	    json: program
+	},
+	function (error, response, body) {
+		console.log(code)
+	    console.log('error:', error);
+	    console.log('statusCode:', response && response.statusCode);
+	    console.log('body:', body);
+	    if(error)
+			socket.emit('output', (error))
+		else
+			socket.emit('output', (body))
+	});
+	}
+
+    socket.on('news',(code) =>{ 
+    	console.log(code.code)
+    	console.log(code.inp)
+    	console.log(code.lang)
+	compile(code.code, code.inp, code.lang)
+	})
     
     socket.on('disconnect', (evt) => {
     log('some people left')
