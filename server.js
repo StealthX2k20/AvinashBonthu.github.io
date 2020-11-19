@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
 	var program = {
     script: `${code}` ,
     stdin: `${input}`,
-    language: "python3",
+    language: `${language}`,
     versionIndex: "0",
     clientId: "78ac5a00ef4dc94e4560bcf2f7587869",
     clientSecret:"13edd9c3d46c9ec50ae774c6fa5bcc65c24117b87be1b4e19d7edcaf4deb6225"

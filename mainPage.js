@@ -12,6 +12,7 @@ function meetid() {
 		}
 
 document.getElementById('create_btn').addEventListener('click', function() {
+  document.getElementById("room_id").style.display = "inline-block";
 	meetid();
 })
 

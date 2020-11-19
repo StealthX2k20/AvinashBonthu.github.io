@@ -113,10 +113,9 @@ nav ul li {
 	width: auto;
 	height: auto;
 	position: relative;
-	margin-left: 220px;
+	margin-left: 240px;
 	margin-top: 20px;
 	font-family: sans-serif;
-	
 }
 
 #main_image {
@@ -136,7 +135,7 @@ nav ul li {
 }
 
 #room_id {
-	display: inline-block;
+	display: none;
 	width: 440px;
 	margin-left: 51px;
 	margin-top: 10px;

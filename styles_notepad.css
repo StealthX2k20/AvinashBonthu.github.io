@@ -1,5 +1,33 @@
+body {
+  margin:0px;
+}
+
+.header_division_class {
+  background-color: #24292e;
+  display: inline-block;
+}
+
+.header_class {
+  height: 80px;
+  width: 100%;
+}
+
+.logo{
+  display: inline-block;
+}
+
+img {
+  width: 11%;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  margin-left: 10px;
+}
+
+
+
+
 .select_div {
-  margin-left: 653px;
+  margin-left: 662px;
   border:3px solid #24292e;
   border-radius: 1px;
   width:150px;
@@ -91,7 +119,7 @@ button:focus {
 
 .button_div {
   display: inline-block;
-  width: 61%;
+  width: 60.7%;
   align-items: center;
 }
 
@@ -100,7 +128,7 @@ button:focus {
   text-decoration: none;
   border: 1px solid white;
   font-weight: bold;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   background-color: #24292e;
   color: white;
   box-shadow: 5px 5px 5px 2px #24292e;
@@ -121,7 +149,7 @@ button:focus {
   width: 100%;
   height: 100%;
   background-color: #24292e;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   z-index: -2;
 }
 .button:before {
@@ -133,7 +161,7 @@ button:focus {
   height: 100%;
   background-color: white;
   transition: all 0.2s;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   z-index: -1;
 }
 .button:hover {
@@ -154,7 +182,7 @@ button:focus {
   text-decoration: none;
   border: 1px solid white;
   font-weight: bold;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   background-color: #24292e;
   color: white;
   box-shadow: 5px 5px 5px 2px #24292e;
@@ -174,7 +202,7 @@ button:focus {
   width: 100%;
   height: 100%;
   background-color: #24292e;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   z-index: -2;
 }
 .end_btn:before {
@@ -186,7 +214,7 @@ button:focus {
   height: 100%;
   background-color: white;
   transition: all 0.2s;
-  border-radius: 10rem;
+  /*border-radius: 10rem;*/
   z-index: -1;
 }
 .end_btn:hover {
