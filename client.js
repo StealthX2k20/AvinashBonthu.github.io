@@ -1,4 +1,7 @@
 var socket = io();
+const messageContainer = document.getElementById('message-container')
+const messageForm = document.getElementById('send-container')
+const messageInput = document.getElementById('message-input')
 const l = console.log
 function getEl(id) {
     return document.getElementById(id)
@@ -25,12 +28,12 @@ scrollToBottom2();
 // }
 // scrollToRight();
 
-
+var params;
 
 socket.on('connect', () => {
 	console.log('connected to server');
 	let searchQuery = window.location.search.substring(1);
-	let params = JSON.parse('{"' + decodeURI(searchQuery).replace(/&/g, '","').replace(/\+/g,' ').replace(/=/g,'":"') + '"}');
+	 params = JSON.parse('{"' + decodeURI(searchQuery).replace(/&/g, '","').replace(/\+/g,' ').replace(/=/g,'":"') + '"}');
 
 	socket.emit('join', params, function(err){
 		if(err){
@@ -42,6 +45,22 @@ socket.on('connect', () => {
 		}
 	})
 });
+
+appendMessage('You joined')
+//socket.emit('new-user', {name: name, roomId: params.room})
+
+socket.on('chat-message', data => {
+  appendMessage(`${data.name}: ${data.message}`)
+})
+
+socket.on('user-connected', name => {
+  appendMessage(`${name} connected`)
+})
+
+socket.on('user-disconnected', name => {
+  appendMessage(`${name} disconnected`)
+})
+
 
 const editor = getEl("editor")
 const output = getEl("output_text")
@@ -62,6 +81,23 @@ document.querySelector("#execute").addEventListener('click',(evt)=>{
 	})
 	//compile(code)
 })
+
+
+messageForm.addEventListener('submit', e => {
+	e.preventDefault()
+	const message = messageInput.value
+	appendMessage(`You: ${message}`)
+	socket.emit('send-chat-message', {message: message, roomId: params.room})
+	messageInput.value = ''
+  })
+  
+  function appendMessage(message) {
+	const messageElement = document.createElement('div')
+	//messageElement.style.width = '300px';
+	//document.querySelector(messageElement).scrollIntoView();
+	messageElement.innerText = message
+	messageContainer.append(messageElement)
+  }
 
 
 language.addEventListener('change', (evt3) => {
