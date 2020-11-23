@@ -113,6 +113,31 @@ textarea:focus{
   white-space: nowrap; 
 }
 
+.loader {
+  display: none;
+  border: 16px solid #f3f3f3;
+  float: right;
+  margin-top: 2px;
+  margin-left: 5px;
+  border-radius: 50%;
+  border-top: 16px solid #24292e;
+  border-bottom: 16px solid #24292e;
+  width: 10px;
+  height: 10px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 button:focus {
   outline:0;
 }

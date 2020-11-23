@@ -49,6 +49,7 @@ const input = getEl("input_text")
 const language = getEl("language")
 
 document.querySelector("#execute").addEventListener('click',(evt)=>{
+	document.querySelector(".loader").style.display = "inline-block"
 	const code = editor.value;
 	const inp = input.value;
 	const lang = language.value
@@ -57,6 +58,7 @@ document.querySelector("#execute").addEventListener('click',(evt)=>{
 	socket.on('output', (msg)=> {
 		console.log(msg.output)
 		output.value = msg.output
+		document.querySelector(".loader").style.display = "none"
 	})
 	//compile(code)
 })

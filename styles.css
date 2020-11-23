@@ -1,4 +1,4 @@
-button,button:hover{border:none;color:#fff;padding:10px}
+/*button,button:hover{border:none;color:#fff;padding:10px}
 .chat__messages,.chat__sidebar ul{list-style-type:none}
 *{box-sizing:border-box;margin:0;padding:0;font-family:HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;font-weight:300;font-size:.95rem}
 li,ul{list-style-position:inside}
@@ -27,3 +27,108 @@ button:disabled{cursor:default;background:#698ea5}
 .message__title{display:flex;margin-bottom:5px}
 .message__title h4{font-weight:600;margin-right:10px}
 .message__title span{color:#999}@media (max-width:600px){*{font-size:1rem}.chat__sidebar{display:none}.chat__footer{flex-direction:column}.chat__footer form{margin-bottom:10px}.chat__footer button{margin-right:0}}
+*/
+
+body {
+	margin:0;
+	padding: 0;
+	font-family: sans-serif;
+	background: #24292e
+}
+
+.box {
+	width: 300px;
+	padding:40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #191919;
+	border-radius: 25px;
+	box-shadow: 5px 5px 5px 2px black;
+	text-align: center;
+}
+.box h2 {
+	color:white;
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 40px;
+}
+.box label {
+	color: white;
+	text-transform: uppercase;
+}
+
+.box input{
+	border: 0;
+	background: none;
+	background-color: white;
+	color: #24292e;
+	font-weight: bold;
+	font-size: 1rem;
+	display: block;
+	margin:20px auto;
+	text-align: center;
+	border: 1px solid #24292e;
+	padding: 14px 10px;
+	width: 250px;
+	outline: none;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+
+.button {
+  display: inline-block;
+  text-decoration: none;
+  border: 1px solid #24292e;
+  font-weight: bold;
+  border-radius: 10rem;
+  background-color: #24292e;
+  color: white;
+  width: 100px;
+  box-shadow: 5px 5px 5px 2px black;
+  padding: 15px;
+  margin-top: 2px;
+  /*float: right;*/
+  font-size: 1rem;
+  transition: all .2s;
+  position: relative;
+  outline: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+.button:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #24292e;
+  border-radius: 10rem;
+  z-index: -2;
+}
+.button:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  transition: all 0.2s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+.button:hover {
+  color: #24292e;
+}
+.button:hover:before {
+  width: 100%;
+}
+
+.button:active {
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
