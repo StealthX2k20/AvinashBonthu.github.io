@@ -3,6 +3,52 @@
 <head>
 	<title>Editor</title>
 	<link rel="stylesheet" type="text/css" href="./styles_notepad.css">
+    
+    <style>
+        body {
+          padding: 0;
+          margin: 0;
+          display: inline-block;
+          justify-content: center;
+        }
+        
+        #chat-box {
+          width: 300px;
+          height: 500px;
+          overflow-y: scroll;
+          overflow-x: none;
+        }
+
+        #message-container {
+          width: 300px;
+          max-width: 300px;
+          
+        }
+    
+        #message-container div {
+          background-color: #CCC;
+          padding: 5px;
+        }
+    
+        /* #message-container div:nth-child(2n) {
+          background-color: #FFF;
+        } */
+    
+        #send-container {
+          position: fixed;
+          padding-bottom: 30px;
+          bottom: 0;
+          background-color: white;
+          max-width: 1200px;
+          width: 300px;
+          display: flex;
+        }
+    
+        #message-input {
+          flex-grow: 1;
+        }
+      </style>
+
 </head>
 
 <body>
@@ -31,6 +77,17 @@
         <textarea id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
         <textarea rows="20" cols="30" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
     </div>
+
+    <div id="chat-box">
+        <div id="message-container"></div>
+      <form id="send-container">
+        <input type="text" id="message-input" autocomplete="off">
+        <button type="submit" id="send-button">Send</button>
+      </form></div>
+      <script src="socket.io/socket.io.js"></script>
+      <script src="script.js"></script>
+
+
     <div class="io_boxes">
     	<div>
     	<textarea rows="100" cols="500" id="input_text" placeholder="INPUT..."></textarea>
