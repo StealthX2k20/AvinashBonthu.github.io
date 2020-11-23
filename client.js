@@ -77,6 +77,8 @@ document.querySelector("#execute").addEventListener('click',(evt)=>{
 	socket.on('output', (msg)=> {
 		console.log(msg.output)
 		output.value = msg.output
+		const text = output.value
+		socket.send({msg:text, id:2})
 		document.querySelector(".loader").style.display = "none"
 	})
 	//compile(code)
