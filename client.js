@@ -99,18 +99,31 @@ messageForm.addEventListener('submit', e => {
   })
   
   function appendMessage(message) {
+	// const messageElement1 = document.createElement('div')
 	const messageElement = document.createElement('div')
+	// messageElement1.appendChild(messageElement)
+	// messageElement1.style.backgroundColor = "none"
+	// messageElement1.style.width = 495 + 'px'
 	messageElement.innerText = message
 	messageContainer.append(messageElement)
+	// messageElement.style.border = "2px solid #24292e"
+	// messageElement.style.boderRadius = 20 + "px"
 	scrollToBottom3()
   }
 
   function appendMessage1(message) {
+  	// const messageElement1 = document.createElement('div')
 	const messageElement = document.createElement('div')
+	// messageElement1.append(messageElement)
+	// messageElement1.style.width = 495 + 'px'
+	// messageElement1.style.backgroundColor = "none"
 	messageElement.innerText = message
 	messageContainer.append(messageElement)
 	messageElement.style.marginLeft = 240 + "px"
 	messageElement.style.display = "block"
+	// messageElement.style.float = "right"
+	// messageElement.style.border = "2px solid #24292e" 
+	// messageElement.style.boderRadius = 20 + "px"
 	scrollToBottom3()
   }
 
