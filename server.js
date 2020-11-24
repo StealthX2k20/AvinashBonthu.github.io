@@ -18,6 +18,11 @@ const request = require('request');
 
 app.use(express.static(public_path));
 
+const Ussers = {}
+var users_in = new Map()
+var users_id = new Map()
+var current_new_id = 0;
+
 io.on('connection', (socket) => {
     log('connected')
 
@@ -26,14 +31,36 @@ io.on('connection', (socket) => {
 			return callback('name and room are required');
 		}
 
+        Ussers[socket.id] = current_new_id++;
+        users_in.set(current_new_id - 1, params.room)
+        users_id.set(current_new_id - 1, params.name)
+
 		socket.join(params.room);//To join to a specific room by not going to other room
 		users.removeUser(socket.id);
 		users.addUser(socket.id, params.name, params.room);
 		//io.to(params.room).emit('updateUsersList',users.getUserList(params.room));
-
+        socket.to(params.room).emit('user-connected', params.name);
 		callback();
 	})
 
+	   socket.on('send-chat-message', message => {
+		//socket.join(message.roomId)
+		   //socket.broadcast.emit('chat-message', { message: message, name: users[socket.id] })
+		   socket.to(message.roomId).emit('chat-message', { message: message.message, name: users_id.get(Ussers[socket.id]) });  
+		})
+
+
+		socket.on('disconnect', () => {
+			socket.join(users_in.get(Ussers[socket.id]))
+			//console.log("map mein hai", users_in);
+			//console.log(`disconnect hua from room id ${users_in[users[socket.id]]}`)
+			//socket.broadcast.emit('user-disconnected', users[socket.id])
+			socket.to(users_in.get(Ussers[socket.id])).emit('user-disconnected', users_id.get(Ussers[socket.id]))
+			users_in.delete(Ussers[socket.id])
+			users_id.delete(Ussers[socket.id])
+			delete Ussers[socket.id]
+			//socket.broadcast.emit('user-connected', name)
+			})
 
     socket.on('message', (evt) => {
         //log(evt)
