@@ -110,7 +110,7 @@ textarea:focus{
 	color: white;
 	overflow-y: auto;
   overflow-x: auto;
-  white-space: nowrap; 
+/*   white-space: nowrap;  */
 }
 
 .loader {
