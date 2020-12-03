@@ -22,14 +22,36 @@ const Ussers = {}
 var users_in = new Map()
 var users_id = new Map()
 var current_new_id = 0;
+var numClients = {};
 
 io.on('connection', (socket) => {
     log('connected')
 
     socket.on('join', (params, callback) => {
+    	console.log(params)
 		if(!isRealString(params.name) || !isRealString(params.room)){
 			return callback('name and room are required');
 		}
+
+		// socket.room = params.room;
+    
+    if (numClients[params.room] == undefined) {
+      console.log(`Creating room ${params.room} and emitting room_created socket event`)
+      socket.join(params.room)
+      socket.emit('room_created', params.room)
+    } else if (numClients[params.room] == 1) {
+      console.log(`Joining room ${params.room} and emitting room_joined socket event`)
+      socket.join(params.room)
+      socket.emit('room_joined', params.room)
+    } else {
+      console.log(`Can't join room ${params.room}, emitting full_room socket event`)
+      socket.emit('full_room', params.room)
+    }
+    if (numClients[params.room] == undefined) {
+        numClients[params.room] = 1;
+    } else {
+        numClients[params.room]++;
+    }
 
         Ussers[socket.id] = current_new_id++;
         users_in.set(current_new_id - 1, params.room)
@@ -40,8 +62,25 @@ io.on('connection', (socket) => {
 		users.addUser(socket.id, params.name, params.room);
 		//io.to(params.room).emit('updateUsersList',users.getUserList(params.room));
         socket.to(params.room).emit('user-connected', params.name);
-		callback();
+		// callback();
 	})
+
+	socket.on('start_call', (roomId) => {
+    console.log(`Broadcasting start_call event to peers in room ${roomId}`)
+    socket.broadcast.to(roomId).emit('start_call')
+  })
+  socket.on('webrtc_offer', (event) => {
+    console.log(`Broadcasting webrtc_offer event to peers in room ${event.roomId}`)
+    socket.broadcast.to(event.roomId).emit('webrtc_offer', event.sdp)
+  })
+  socket.on('webrtc_answer', (event) => {
+    console.log(`Broadcasting webrtc_answer event to peers in room ${event.roomId}`)
+    socket.broadcast.to(event.roomId).emit('webrtc_answer', event.sdp)
+  })
+  socket.on('webrtc_ice_candidate', (event) => {
+    console.log(`Broadcasting webrtc_ice_candidate event to peers in room ${event.roomId}`)
+    socket.broadcast.to(event.roomId).emit('webrtc_ice_candidate', event)
+  })
 
 	   socket.on('send-chat-message', message => {
 		//socket.join(message.roomId)
@@ -59,6 +98,8 @@ io.on('connection', (socket) => {
 			users_in.delete(Ussers[socket.id])
 			users_id.delete(Ussers[socket.id])
 			delete Ussers[socket.id]
+			numClients[socket.room]--;
+  			socket.emit("dis")
 			//socket.broadcast.emit('user-connected', name)
 			})
 

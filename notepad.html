@@ -5,17 +5,67 @@
     <link rel="stylesheet" type="text/css" href="./styles_notepad.css">
     
     <style>
-        body {
+        /*body {
           padding: 0;
           margin: 0;
           display: inline-block;
           justify-content: center;
-        }
+        }*/
         
+
+        .video-position {
+        position: absolute;
+        /*top: 35%;
+        left: 50%;*/
+        /*transform: translate(-50%, -50%);*/
+      }
+
+      #video-chat-container {
+        width: 500px;
+        height:50%;
+        float: right;
+        margin-left: 848px;
+        background-color: black;
+      }
+
+      #local-video {
+        position: absolute;
+        /*float: right;*/
+        border: 2px solid white;
+        margin-left: 2px;
+        margin-bottom: 2px;
+        height: 30%;
+        width: 30%;
+        bottom: 0px;
+        left: 0px;
+      }
+
+      #remote-video {
+        /*position: absolute;*/
+        height: 100%;
+        width: 100%;
+      }
+
+      #image {
+        border:5px solid #24292e;
+        width:30px;
+        height: 30px;
+        padding:5px;
+        margin-left: 225px;
+        border-radius: 50%;
+        text-indent: center;
+      }
+      #img {
+        height: 10px;
+        width:30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
         #chat-box {
-            position: relative;
+            /*position: relative;*/
           width: 500px;
-          height: 600px;
+          height: 500px;
           border:2px solid #24292e;
           background-image: url('chatbox-bck.png');
           float: right;
@@ -27,7 +77,7 @@
         #message-container {
           width: 490px;
           max-width: 500px;
-          height:600px;
+          height:500px;
         }
     
         #message-container div {
@@ -70,11 +120,22 @@
         }
 
         #whole_chat {
+            /*display: block;*/
+            position: static;
             float: right;
             width: 500px;
-            height: 600px;
+            height: 500px;
+            margin-top: 400px;
             /*display: inline-block;*/
         }
+
+        /*#right_part {
+          float: right;
+          display: block;
+
+        }*/
+
+        
       </style>
 
 </head>
@@ -97,9 +158,23 @@
             <option value="python3"><b>Python</b></option>
             </select>
         </div>
-        
+
+<div id="video-chat-container" class="video-position">
+          <video id="local-video" autoplay="autoplay"></video>
+          <video id="remote-video" autoplay="autoplay"></video>
+          <div id="image">
+            <img id = "img" src="mute.png" style="
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+">
+          </div>
+        </div>
+      
         
     <div id="whole_chat">
+      
+        
         <div id="chat-box">
         <div id="message-container"></div>
         
@@ -109,6 +184,7 @@
         <button type="submit" id="send-button">Send</button>
       </form>
     </div>
+        
 
     <div class="main_textareas">
         <textarea id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
