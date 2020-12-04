@@ -26,7 +26,7 @@ scrollToBottom2();
 
 function scrollToBottom3() {
   let messages = document.querySelector("#message-container").lastElementChild;
-  messages.scrollIntoView();
+  messages.scrollIntoView(({ behavior: 'smooth', block: 'nearest', inline: 'start' }));
   }
 // function scrollToRight() {
 // 	var textarea = document.getElementById('editor');
@@ -178,7 +178,7 @@ const remoteVideoComponent = document.getElementById('remote-video')
 // Variables.
 // const socket = io()
 const mediaConstraints = {
-  audio: {'echoCancellation': true},
+  audio: true,
   video: true,
 }
 let localStream
@@ -186,6 +186,8 @@ let remoteStream
 let isRoomCreator
 let rtcPeerConnection // Connection between the local device and the remote peer.
 let roomId
+let mic_switch = true;
+let click = 1;
 
 // Free public STUN servers provided by Google.
 const iceServers = {
@@ -203,19 +205,29 @@ const iceServers = {
 //   joinRoom(roomInput.value)
 // })
 
-document.querySelector("#image").addEventListener('click', () => {
-  if(localVideoComponent.muted == false){
-    document.querySelector('#image').style.backgroundColor = "#24292e"
-    document.querySelector('#img').style.backgroundColor = "#24292e"
-    localVideoComponent.muted = true
-  }
-  else{
-    document.querySelector('#image').style.backgroundColor = "white"
-    document.querySelector('#img').style.backgroundColor = "white"
-    localVideoComponent.muted = false
-  }
+// document.querySelector("#image").addEventListener('click', () => {
+//   if(click % 2 != 0){
+//     document.querySelector('#image').style.backgroundColor = "#24292e"
+//     document.querySelector('#img').style.backgroundColor = "#24292e"
+//     rtcPeerConnection.attachStreams[0].mute('audio');
+//     // toggleMic()
+//   }
+//   else{
+//     document.querySelector('#image').style.backgroundColor = "white"
+//     document.querySelector('#img').style.backgroundColor = "white"
+//     rtcPeerConnection.attachStreams[0].unmute('audio');
+//     // toggleMic()
+//   }
   
-})
+// })
+
+// function toggleMic() {
+//   if(localVideoComponent != null && localVideoComponent.getAudioTracks().length > 0){
+//     mic_switch = !mic_switch;
+
+//     localVideoComponent.RTCMultiConnection.mu = mic_switch;
+//   }  
+//   }  
 
 
 // SOCKET EVENT CALLBACKS =====================================================

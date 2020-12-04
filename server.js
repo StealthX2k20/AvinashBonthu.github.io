@@ -23,6 +23,7 @@ var users_in = new Map()
 var users_id = new Map()
 var current_new_id = 0;
 var numClients = {};
+var ROOMID;
 
 io.on('connection', (socket) => {
     log('connected')
@@ -32,22 +33,22 @@ io.on('connection', (socket) => {
 		if(!isRealString(params.name) || !isRealString(params.room)){
 			return callback('name and room are required');
 		}
-
-		// socket.room = params.room;
+    ROOMID = params.room;
+		socket.room = params.room;
     
-    if (numClients[params.room] == undefined) {
+    if (numClients[params.room] == undefined || numClients[params.room] == 0) {
       console.log(`Creating room ${params.room} and emitting room_created socket event`)
       socket.join(params.room)
       socket.emit('room_created', params.room)
-    } else if (numClients[params.room] == 1) {
+    } else {
       console.log(`Joining room ${params.room} and emitting room_joined socket event`)
       socket.join(params.room)
       socket.emit('room_joined', params.room)
-    } else {
-      console.log(`Can't join room ${params.room}, emitting full_room socket event`)
-      socket.emit('full_room', params.room)
-    }
-    if (numClients[params.room] == undefined) {
+    } //else {
+    //   console.log(`Can't join room ${params.room}, emitting full_room socket event`)
+    //   socket.emit('full_room', params.room)
+    // }
+    if (numClients[params.room] == undefined || numClients[params.room] == 0) {
         numClients[params.room] = 1;
     } else {
         numClients[params.room]++;
@@ -81,6 +82,14 @@ io.on('connection', (socket) => {
     console.log(`Broadcasting webrtc_ice_candidate event to peers in room ${event.roomId}`)
     socket.broadcast.to(event.roomId).emit('webrtc_ice_candidate', event)
   })
+  socket.on('disconnect', () => {
+
+      if(numClients[ROOMID] == 0)
+    numClients[ROOMID] = undefined;
+    else
+      numClients[ROOMID]--;
+    console.log(numClients)
+  })
 
 	   socket.on('send-chat-message', message => {
 		//socket.join(message.roomId)
@@ -98,7 +107,7 @@ io.on('connection', (socket) => {
 			users_in.delete(Ussers[socket.id])
 			users_id.delete(Ussers[socket.id])
 			delete Ussers[socket.id]
-			numClients[socket.room]--;
+			
   			socket.emit("dis")
 			//socket.broadcast.emit('user-connected', name)
 			})
@@ -145,6 +154,7 @@ io.on('connection', (socket) => {
     
     socket.on('disconnect', (evt) => {
     log('some people left')
+    
 	})
     
 })
