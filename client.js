@@ -28,6 +28,7 @@ function scrollToBottom3() {
   let messages = document.querySelector("#message-container").lastElementChild;
   messages.scrollIntoView(({ behavior: 'smooth', block: 'nearest', inline: 'start' }));
   }
+scrollToBottom3()
 // function scrollToRight() {
 // 	var textarea = document.getElementById('editor');
 // 	textarea.scrollLeft = textarea.scrollWidth;
