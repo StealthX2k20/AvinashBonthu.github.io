@@ -22,8 +22,10 @@ const Ussers = {}
 var users_in = new Map()
 var users_id = new Map()
 var current_new_id = 0;
-var numClients = {};
+var numClients;
 var ROOMID;
+
+numClients = {};
 
 io.on('connection', (socket) => {
     log('connected')
@@ -82,14 +84,14 @@ io.on('connection', (socket) => {
     console.log(`Broadcasting webrtc_ice_candidate event to peers in room ${event.roomId}`)
     socket.broadcast.to(event.roomId).emit('webrtc_ice_candidate', event)
   })
-  socket.on('disconnect', () => {
+//   socket.on('disconnect', () => {
 
-      if(numClients[ROOMID] == 0)
-    numClients[ROOMID] = undefined;
-    else
-      numClients[ROOMID]--;
-    console.log(numClients)
-  })
+//       if(numClients[ROOMID] == 0)
+//     numClients[ROOMID] = undefined;
+//     else
+//       numClients[ROOMID]--;
+//     console.log(numClients)
+//   })
 
 	   socket.on('send-chat-message', message => {
 		//socket.join(message.roomId)
@@ -107,6 +109,12 @@ io.on('connection', (socket) => {
 			users_in.delete(Ussers[socket.id])
 			users_id.delete(Ussers[socket.id])
 			delete Ussers[socket.id]
+			
+			if(numClients[ROOMID] == 0)
+			    numClients[ROOMID] = undefined;
+			    else
+			      numClients[ROOMID]--;
+			    console.log(numClients)
 			
   			socket.emit("dis")
 			//socket.broadcast.emit('user-connected', name)
