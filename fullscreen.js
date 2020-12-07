@@ -126,13 +126,14 @@ setInterval(function(){
 		//countt=countt-5;
 		setTimeout(function(){
 			isFullScreen = document.fullscreen;
-			if(isFullScreen == false || countt<=0)
-				
+			if(isFullScreen == false || countt<=0){
+				alert('window is going to close')
 			window.close();
-		},10000)
+			}
+		},7000)
 		
 	}
-	 }, 15000);
+	 }, 5000);
 
  // window.onload= function(){
  // 		alert('Change to full screen.Else you will be exited automatically')
