@@ -116,6 +116,24 @@ document.body.appendChild(fsicon);
     
 })();
 
+var countt=10;
+setInterval(function(){ 
+	var isFullScreen;
+	isFullScreen = document.fullscreen;
+	if(isFullScreen == false)
+	{   
+		alert("Switch to Full Screen.Exiting in "+countt+" seconds.");
+		//countt=countt-5;
+		setTimeout(function(){
+			isFullScreen = document.fullscreen;
+			if(isFullScreen == false || countt<=0)
+				
+			window.close();
+		},10000)
+		
+	}
+	 }, 15000);
+
  // window.onload= function(){
  // 		alert('Change to full screen.Else you will be exited automatically')
  // 		if(fsicon.value = "EXIT FULL SCREEN"){
