@@ -42,14 +42,14 @@ io.on('connection', (socket) => {
       console.log(`Creating room ${params.room} and emitting room_created socket event`)
       socket.join(params.room)
       socket.emit('room_created', params.room)
-    } else {
+    } else if(numClients[params.room] == 1) {
       console.log(`Joining room ${params.room} and emitting room_joined socket event`)
       socket.join(params.room)
       socket.emit('room_joined', params.room)
-    } //else {
-    //   console.log(`Can't join room ${params.room}, emitting full_room socket event`)
-    //   socket.emit('full_room', params.room)
-    // }
+    } else {
+       console.log(`Can't join room ${params.room}, emitting full_room socket event`)
+       socket.emit('full_room', params.room)
+    }
     if (numClients[params.room] == undefined || numClients[params.room] == 0) {
         numClients[params.room] = 1;
     } else {
