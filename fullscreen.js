@@ -67,19 +67,14 @@ document.body.appendChild(fsicon);
 				fsicon.setAttribute('value',"EXIT FULL SCREEN");
 				fsicon.innerHTML = 'EXIT FULL SCREEN'
 				document.getElementById('whole_chat').style.marginTop = 400 + 'px'
+				document.getElementById('closing').style.display = 'none'
+				document.getElementById('MyClockDisplay').style.marginLeft = 72 + "%"
 			 }else{
 				fsicon.setAttribute('value',"FULL SCREEN");
 				fsicon.innerHTML = "FULL SCREEN"
 				document.getElementById('whole_chat').style.marginTop = 350 + 'px'
-				// if(fsicon.value = "EXIT FULL SCREEN"){
-				// 	alert("Change to full screen.Closing window in 10 seconds")
-				// 	setTimeout(function() {
-				// 		if(fsicon.value = 'EXIT FULL SCREEN'){
-				// 			window.close()
-				// 		}
-						
-				// 	}, 10000)
-				// }
+				document.getElementById('closing').style.display = 'inline-block'
+				document.getElementById('MyClockDisplay').style.marginLeft = 15 + "%"
 			 };
 			
         }, false);
@@ -89,15 +84,14 @@ document.body.appendChild(fsicon);
 				fsicon.setAttribute('value',"EXIT FULL SCREEN");
 				fsicon.innerHTML = 'EXIT FULL SCREEN'
 				document.getElementById('whole_chat').style.marginTop = 400 + 'px'
+				document.getElementById('closing').style.display = 'none'
+				document.getElementById('MyClockDisplay').style.marginLeft = 50 + "%"
 			 }else{
 				fsicon.setAttribute('value',"FULL SCREEN");
 				fsicon.innerHTML = "FULL SCREEN"
 				document.getElementById('whole_chat').style.marginTop = 350 + 'px'
-				// if(fsicon.value = "EXIT FULL SCREEN"){
-				// 	alert("Change to full screen.Closing window in 10 seconds")
-				// 		if(fsicon.value = 'EXIT FULL SCREEN')
-				// 		window.close()
-				// }
+				document.getElementById('closing').style.display = 'inline-block'
+				document.getElementById('MyClockDisplay').style.marginLeft = 15 + "%"
 			 };
         }, false);
         
@@ -106,42 +100,51 @@ document.body.appendChild(fsicon);
 				fsicon.setAttribute('value',"EXIT FULL SCREEN");
 				fsicon.innerHTML = 'EXIT FULL SCREEN'
 				document.getElementById('whole_chat').style.marginTop = 400 + 'px'
+				document.getElementById('closing').style.display = 'none'
+				document.getElementById('MyClockDisplay').style.marginLeft = 50 + "%"
 			 }else{
 				fsicon.setAttribute('value',"FULL SCREEN");
 				fsicon.innerHTML = "FULL SCREEN"
 				document.getElementById('whole_chat').style.marginTop = 350 + 'px'
+				document.getElementById('closing').style.display = 'inline-block'
+				document.getElementById('MyClockDisplay').style.marginLeft = 15 + "%"
 			 };
         }, false);
     }
     
 })();
 
+
+
 var countt=10;
 
 if(!document.fullscreen){
-	alert('Switch to Full Screen.Exiting in 10 seconds')
+	// alert('Switch to Full Screen.Exiting in 10 seconds')
+	// time = document.createElement
+
 	setTimeout(function(){
 			isFullScreen = document.fullscreen;
 			if(isFullScreen == false){
 				alert('window is going to close')
 			window.close();
 			}
-		},7000)
+		},10000)
 }
 document.addEventListener('fullscreenchange',function(){ 
 	var isFullScreen;
 	isFullScreen = document.fullscreen;
 	if(isFullScreen == false)
 	{   
-		alert("Switch to Full Screen.Exiting in "+countt+" seconds.");
+		// alert("Switch to Full Screen.Exiting in "+countt+" seconds.");
 		//countt=countt-5;
+
 		setTimeout(function(){
 			isFullScreen = document.fullscreen;
 			if(isFullScreen == false || countt<=0){
 				alert('window is going to close')
 			window.close();
 			}
-		},7000)
+		},10000)
 		
 	}
 	 });
