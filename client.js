@@ -28,6 +28,7 @@ function scrollToBottom3() {
   let messages = document.querySelector("#message-container").lastElementChild;
   messages.scrollIntoView(({ behavior: 'smooth', block: 'nearest', inline: 'start' }));
   }
+  // scrollToBottom3()
 // function scrollToRight() {
 // 	var textarea = document.getElementById('editor');
 // 	textarea.scrollLeft = textarea.scrollWidth;
@@ -247,8 +248,9 @@ socket.on('room_joined', async () => {
 
 socket.on('full_room', () => {
   console.log('Socket event callback: full_room')
-
-  alert('Enter valid room ID')
+  // alert('Enter valid room ID')
+  window.location.href = window.location.origin + '/error404.html'
+  
 })
 
 // FUNCTIONS ==================================================================
