@@ -117,7 +117,17 @@ document.body.appendChild(fsicon);
 })();
 
 var countt=10;
-setInterval(function(){ 
+if(!document.fullscreen){
+	alert('Switch to Full Screen.Exiting in 10 seconds')
+	setTimeout(function(){
+			isFullScreen = document.fullscreen;
+			if(isFullScreen == false){
+				alert('window is going to close')
+			window.close();
+			}
+		},7000)
+}
+document.addEventListener('fullscreenchange',function(){ 
 	var isFullScreen;
 	isFullScreen = document.fullscreen;
 	if(isFullScreen == false)
@@ -133,7 +143,15 @@ setInterval(function(){
 		},7000)
 		
 	}
-	 }, 5000);
+	 });
+
+document.addEventListener( 'visibilitychange' , function() {
+    if (document.hidden) {
+        window.close()
+    } else {
+        console.log('well back');
+    }
+}, false );
 
  // window.onload= function(){
  // 		alert('Change to full screen.Else you will be exited automatically')
