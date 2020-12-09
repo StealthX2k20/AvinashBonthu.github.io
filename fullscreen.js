@@ -125,7 +125,6 @@ if(!document.fullscreen){
 	setTimeout(function(){
 			isFullScreen = document.fullscreen;
 			if(isFullScreen == false){
-				alert('window is going to close')
 			window.close();
 			}
 		},10000)
@@ -141,7 +140,6 @@ document.addEventListener('fullscreenchange',function(){
 		setTimeout(function(){
 			isFullScreen = document.fullscreen;
 			if(isFullScreen == false || countt<=0){
-				alert('window is going to close')
 			window.close();
 			}
 		},10000)
