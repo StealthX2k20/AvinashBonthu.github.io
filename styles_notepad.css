@@ -84,7 +84,7 @@ textarea:focus{
   position: absolute;
   resize: none;
   width:2%;
-  height: 500px;
+  height: 715px;
   background-color: #24292e;
   box-shadow: 5px 5px 5px 2px black;
   color: grey;
@@ -97,7 +97,7 @@ textarea:focus{
   position: relative;
 	resize: none;
 	width: 57.8%;
-	height: 500px;
+	height: 715px;
 	background-color: #24292e;
   box-shadow: 5px 5px 5px 2px black;
   font-size: 15px;
