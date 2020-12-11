@@ -69,12 +69,16 @@ document.body.appendChild(fsicon);
 				document.getElementById('whole_chat').style.marginTop = 400 + 'px'
 				document.getElementById('closing').style.display = 'none'
 				document.getElementById('MyClockDisplay').style.marginLeft = 72 + "%"
+				document.getElementById('editor').style.height = 775 + 'px'
+				document.getElementById('line_numbering_area').style.height = 775 + 'px'
 			 }else{
 				fsicon.setAttribute('value',"FULL SCREEN");
 				fsicon.innerHTML = "FULL SCREEN"
 				document.getElementById('whole_chat').style.marginTop = 350 + 'px'
 				document.getElementById('closing').style.display = 'inline-block'
 				document.getElementById('MyClockDisplay').style.marginLeft = 15 + "%"
+				document.getElementById('editor').style.height = 715 + 'px'
+				document.getElementById('line_numbering_area').style.height = 715 + 'px'
 			 };
 			
         }, false);
