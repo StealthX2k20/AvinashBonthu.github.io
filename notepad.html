@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Editor</title>
-    <link rel="icon" href="d1.png" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" type="text/css" href="./styles_notepad.css">
-    
-    <style>
-        /*body {
-          padding: 0;
-          margin: 0;
-          display: inline-block;
-          justify-content: center;
-        }*/
-        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="d1.png" type="image/gif" sizes="16x16" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
 
-        .video-position {
+    <link rel="stylesheet" type="text/css" href="./styles_notepad.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+      /* .maincontent {
+        display: grid;
+        margin: 0;
+        grid-template-columns: 6fr 0fr;
+        border: none;
+      } */
+
+      .video-position {
         position: absolute;
-        /*top: 35%;
-        left: 50%;*/
-        /*transform: translate(-50%, -50%);*/
+      }
+
+      .box1 {
+        display: inline;
+        height: 100%;
+        margin-bottom: -1px;
       }
 
       #video-chat-container {
-        width: 500px;
-        height:50%;
+        width: 547px;
+        /* margin-top: -958px; */
+        display: inline-flex;
+        height: 50%;
         float: right;
-        margin-left: 848px;
+        margin-left: 62.5%;
         background-color: black;
       }
 
@@ -48,217 +64,296 @@
       }
 
       #image {
-        border:5px solid #24292e;
-        width:30px;
+        border: 5px solid #24292e;
+        width: 30px;
         height: 30px;
-        padding:5px;
+        padding: 5px;
         margin-left: 225px;
         border-radius: 50%;
         text-indent: center;
       }
+
       #img {
         height: 10px;
-        width:30px;
+        width: 30px;
         height: 30px;
         border-radius: 50%;
       }
 
-        #chat-box {
-            /*position: relative;*/
-          width: 500px;
-          height: 500px;
-          border:2px solid #24292e;
-          background-image: url('chatbox-bck.png');
-          float: right;
+      #chat-box {
+        /*position: relative;*/
+        /* display:inline-block; */
+        width: 549px;
+        height: 100%;
+        border: 2px solid #24292e;
+        background-image: url("chatbox-bck.png");
+        margin-top: -507px;
+        margin-left: -19px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
 
-          overflow-y: auto;
-          overflow-x: hidden;
-        }
+      #message-container {
+        width: 520px;
+        max-width: 1000px;
+        height: 500px;
+      }
 
-        #message-container {
-          width: 490px;
-          max-width: 500px;
-          height:500px;
-        }
-    
-        #message-container div {
-          /*background-color: #CCC;*/
-          max-width:200px;
-          word-wrap:break-word;
-          display: block;
-          background-color: #24292e;
-          color: white;
-          /*margin-left: 420px;*/
-          border: 2px solid #24292e;
-          padding: 20px;
-          margin-top: 5px;
-          font-weight: bold;
-          border-radius: 20px;
-        }
-    
-        /* #message-container div:nth-child(2n) {
+      #message-container div {
+        /*background-color: #CCC;*/
+        max-width: 200px;
+        word-wrap: break-word;
+        display: block;
+        background-color: #24292e;
+        color: white;
+        /*margin-left: 420px;*/
+        border: 2px solid #24292e;
+        padding: 20px;
+        margin-top: 5px;
+        font-weight: bold;
+        border-radius: 20px;
+      }
+
+      /* #message-container div:nth-child(2n) {
           background-color: #FFF;
         } */
-    
-        #send-container {
-          bottom: 0;
-          background-color: white;
-          /*font-size: 2rem;*/
-          /*max-width: 1200px;*/
-          width: 500px;
-          
-            /*color: #24292e;*/
-            
-          /*display: inline-block;*/
-        }
-    
-        #message-input {
-          /*flex-grow: 1;*/
-          width: 400px;
-          height: 32px;
-          font-size:1rem;
-          font-weight: bold;
-        }
 
-        #whole_chat {
-            /*display: block;*/
-            position: static;
-            float: right;
-            width: 500px;
-            height: 500px;
-            margin-top: 350px;
-            /*display: inline-block;*/
-        }
+      #send-container {
+        bottom: 0;
+        display: inline;
+        background-color: white;
+        /*font-size: 2rem;*/
+        /*max-width: 1200px;*/
+        width: 500px;
+        height: 100px;
+        margin-left: -19px;
+        margin-top: 5%;
 
-        /*#right_part {
+        /*color: #24292e;*/
+
+        /*display: inline-block;*/
+      }
+
+      #message-input {
+        /*flex-grow: 1;*/
+        width: 550px;
+        height: 32px;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      #cap_people{
+        display: hidden; 
+        /* border: 3px solid black;  */
+        width:15%; 
+        float: left; 
+        margin-top: -2.15%; 
+        height:100%;  
+        text-align: left; 
+        font-size: large; 
+        margin-right: 80%; 
+        font-weight: 600;
+      }
+
+      #whole_chat {
+        /* display: flex; */
+        display: inline;
+        /* position: static; */
+        float: right;
+        width: 550px;
+        /* height: 500px; */
+        /* margin-top: 400px; */
+        /* margin-left: 60%; */
+      }
+
+      /*#right_part {
           float: right;
           display: block;
 
         }*/
+    </style>
+  </head>
 
+  <body>
+    <!-- <h1>DASH</h1> -->
+    <header class="header_division_class">
+      <div class="logo">
         
-      </style>
+        <img class="image_class" src="dash1.png" placeholder="DASH logo" />
+        <p id="closing" style="display: inline-flex;">Change to full screen else exiting in 10 seconds...</p>
+    
+        <!-- <script>
+        console(`running script`)
+            let seconds = 10
+            let countdown = setInterval(function() {
+              seconds--;
+              document.getElementById("closing").innerText = `Change to full screen else exiting in ${second} seconds...`;
+              if (seconds <= 0) clearInterval(countdown);
+              }, 1000);
+      </script> -->
 
-</head>
+        <p id="MyClockDisplay" class="clock" style="display: inline-flex; margin-left: 20%" onload="showTime()"></p>
+      </div>
+    </header>
 
-<body>
-        <!-- <h1>DASH</h1> -->
-        <header class="header_division_class">
-            <div class="logo">
-                <img class="image_class" src="dash1.png" placeholder="DASH logo">
-                  <p id="closing">Change to full screen else exiting in 10 seconds...</p>
-                <p id="MyClockDisplay" class="clock" onload="showTime()"></p>
-                </div>
-            
-        </header> 
-            
-        
-        <div class="select_div">
-            <select class="select" id="language">
-            <option disabled="disabled" visibility="hidden">Select an option.</option>
+    <div class="box1">
+      <div class="header2">
+        <div class="select_div" style="initial-flex;">
+          <select class="select" id="language">
+            <option disabled="disabled" visibility="hidden">
+              Select a language.
+            </option>
             <option value="c"><b>C</b></option>
             <option value="cpp14" selected><b>C++</b></option>
             <option value="java"><b>Java</b></option>
             <option value="python3"><b>Python</b></option>
-            </select>
+          </select>
         </div>
 
-<div id="video-chat-container" class="video-position">
-          <video id="local-video" autoplay="autoplay" muted></video>
-          <video id="remote-video" autoplay="autoplay"></video>
-          <!-- <div id="image">
-            <img id = "img" src="mute.png" style="
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-bottom: 0px;
-">
-          </div> -->
+        <span id="cap_people">
+          People in room
+        </span>
+      </div>
+
+      <div
+        id="video-chat-container"
+        class="video-position"
+        style="display: inline-flex"
+      >
+        <video id="local-video" autoplay="autoplay" muted></video>
+        <video id="remote-video" autoplay="autoplay"></video>
+      </div>
+
+      <!-- <div class="maincontent"> -->
+      <!-- <div class="section1"> -->
+      <div class="main_textarea">
+        <textarea
+          id="line_numbering_area"
+          rows="5000"
+          cols="5000"
+          readonly
+        ></textarea>
+        <textarea
+          rows="20"
+          cols="30"
+          id="editor"
+          placeholder="WRITE YOUR CODE HERE..."
+          class="lined"
+        ></textarea>
+      </div>
+
+      <!-- <script src="socket.io/socket.io.js"></script>
+       <script src="script.js"></script> -->
+
+      <div class="io_boxes" style="display: inline-flex">
+        <div style="margin-top:-0.8%;">
+          <textarea
+            rows="100"
+            cols="500"
+            id="input_text"
+            placeholder="INPUT..."
+          ></textarea>
         </div>
-      
-        
+        <div style="margin-top:-0.8%;">
+          <textarea
+            rows="500"
+            cols="500"
+            id="output_text"
+            placeholder="OUTPUT..."
+            readonly
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="button_div" style="margin-top: -0.4%">
+        <button type="reset" class="end_btn" onclick="confirmation()">
+          <i>EXIT MEET</i>
+        </button>
+        <div class="loader"></div>
+        <button type="button" class="button" id="execute" style="margin-right: 0.2%;">
+          <i>EXECUTE</i>
+        </button>
+      </div>
+    </div>
+
     <div id="whole_chat">
-      
-        
-        <div id="chat-box">
+      <div id="chat-box">
         <div id="message-container"></div>
-        
       </div>
       <form id="send-container">
-        <input type="text" id="message-input" autocomplete="off">
-        <button type="submit" id="send-button">Send</button>
-      </form>
-    </div>
-        
-
-    <div class="main_textareas">
-        <textarea id="line_numbering_area" rows="5000" cols="5000" readonly></textarea>
-        <textarea rows="20" cols="30" id="editor" placeholder="WRITE YOUR CODE HERE..." class="lined"></textarea>
+        <div style="display: inline;"><input type="text" id="message-input" autocomplete="off"  style="width: 90%; height: 37px; margin-top: 9px;"/></div>
+        <div style="display:inline; margin-top: -1%;"><button type="submit" id="send-button" style="background-color: #24292e; width:9%;"> <img src="chatfin-removebg-preview.png" style="width: 100%; height:100%; margin: 0% 0% 0% 0%;"> </button>
+        </div>
+        </form>
     </div>
 
-    
-    
-      
-      <!-- <script src="socket.io/socket.io.js"></script>
-      <script src="script.js"></script> -->
+    <script type="text/javascript">
+      function confirmation() {
+           window.close();
+      }
 
-
-    <div class="io_boxes">
-        <div>
-        <textarea rows="100" cols="500" id="input_text" placeholder="INPUT..."></textarea>
-    </div>
-    <div>
-        <textarea rows="500" cols="500" id="output_text" placeholder="OUTPUT..." readonly></textarea>
-
-    </div>
-    </div>
-
-    <div class="button_div">
-        <button type="reset" class="end_btn" onclick="confirmation()"><i>EXIT MEET</i></button>
-        <div class="loader"></div>
-        <button type="button" class="button" id="execute"><i>EXECUTE</i></button>
-    </div>
-    <script type="text/javascript"> 
-        function confirmation() {
-            if(confirm("Do you want to leave the page"))
-                window.close()
+      let seconds = 10
+      function timer(){
+          let countdown = setInterval(function() {
+            seconds--;
+            document.getElementById("closing").innerText = `Change to full screen else exiting in ${seconds} seconds...`;
             
-        }
-
-            function showTime(){
-              var date = new Date();
-              var h = date.getHours(); // 0 - 23
-              var m = date.getMinutes(); // 0 - 59
-              var s = date.getSeconds(); // 0 - 59
-              var session = "AM";
-              
-              if(h == 0){
-                  h = 12;
+            if (seconds <= 0 || document.fullscreen == true) {
+              document.getElementById('closing').style.display = 'none'
+					    document.getElementById('MyClockDisplay').style.marginLeft = 74.38 + "%"
+              clearInterval(countdown);}
+            
+            document.addEventListener("keydown", (e) => {
+              if(e.keyCode == 122)
+              {
+               seconds = 10;
+               document.getElementById('closing').style.display = 'none'
+					     document.getElementById('MyClockDisplay').style.marginLeft = 74.38 + "%"
+               clearInterval(countdown);
               }
-              
-              if(h > 12){
-                  h = h - 12;
-                  session = "PM";
-              }
-              
-              h = (h < 10) ? "0" + h : h;
-              m = (m < 10) ? "0" + m : m;
-              s = (s < 10) ? "0" + s : s;
-              
-              var time = h + ":" + m + ":" + s + " " + session;
-              document.getElementById("MyClockDisplay").innerText = time;
-              document.getElementById("MyClockDisplay").textContent = time;
-              
-              setTimeout(showTime, 1000);
+            })
+            
+            }, 1000);
+          }
         
+      timer();
+      
+
+      function showTime() {
+
+        var date = new Date();
+        var h = date.getHours(); // 0 - 23
+        var m = date.getMinutes(); // 0 - 59
+        var s = date.getSeconds(); // 0 - 59
+        var session = "AM";
+
+        if (h == 0) {
+          h = 12;
         }
 
-    showTime();
+        if (h > 12) {
+          h = h - 12;
+          session = "PM";
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        var time = h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+        
+
+        setTimeout(showTime, 1000);
+      }
+
+      showTime();
+
     </script>
     <script src='fullscreen.js'></script>
-
-</body>
-<script src="./socket.io/socket.io.js"></script>
-<script type="text/javascript" src="line_numbering.js"></script>
-<script src="./client.js"></script>
-
+  </body>
+  <script src="./socket.io/socket.io.js"></script>
+  <script type="text/javascript" src="line_numbering.js"></script>
+  <script src="./client.js"></script>
 </html>
