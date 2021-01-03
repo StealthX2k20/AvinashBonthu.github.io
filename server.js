@@ -27,16 +27,21 @@ var ROOMID;
 
 numClients = {};
 
+var PARAMS, PARAMS_NAME;
+var flg;
+
 io.on('connection', (socket) => {
     log('connected')
-
+    flg = 0;
     socket.on('join', (params, callback) => {
       console.log(params)
     if(!isRealString(params.name) || !isRealString(params.room)){
       return callback('name and room are required');
     }
+    PARAMS = params.room;
     ROOMID = params.room;
     socket.room = params.room;
+    PARAMS_NAME = params.name;
     
     if (numClients[params.room] == undefined || numClients[params.room] == 0) {
       console.log(`Creating room ${params.room} and emitting room_created socket event`)
@@ -47,6 +52,7 @@ io.on('connection', (socket) => {
       socket.join(params.room)
       socket.emit('room_joined', params.room)
     } else {
+      flg = 1;
        console.log(`Can't join room ${params.room}, emitting full_room socket event`)
        socket.emit('full_room', params.room)
     }
@@ -55,7 +61,7 @@ io.on('connection', (socket) => {
     } else {
         numClients[params.room]++;
     }
-
+      if(flg == 0){
         Ussers[socket.id] = current_new_id++;
         users_in.set(current_new_id - 1, params.room)
         users_id.set(current_new_id - 1, params.name)
@@ -64,9 +70,13 @@ io.on('connection', (socket) => {
     users.removeUser(socket.id);
     users.addUser(socket.id, params.name, params.room);
     //io.to(params.room).emit('updateUsersList',users.getUserList(params.room));
-        socket.to(params.room).emit('user-connected', params.name);
+    // console.log(`aya numhai ${numClients[params.room]}`)     
+    socket.to(params.room).emit('user-connected', params.name/*, numP: numClients[params.room]*/);
+    io.to(params.room).emit('in_face', numClients[params.room]);}
     // callback();
   })
+
+  // socket.to(PARAMS).emit('user-connected', {name: PARAMS_NAME, numP: numClients[PARAMS]});
 
   socket.on('start_call', (roomId) => {
     console.log(`Broadcasting start_call event to peers in room ${roomId}`)
@@ -99,13 +109,18 @@ io.on('connection', (socket) => {
        socket.to(message.roomId).emit('chat-message', { message: message.message, name: users_id.get(Ussers[socket.id]) });  
     })
 
+    socket.on('alert_users', () => {
+      socket.to(users_in.get(Ussers[socket.id])).emit('alert_user', users_id.get(Ussers[socket.id]));
+    })
+
 
     socket.on('disconnect', () => {
       socket.join(users_in.get(Ussers[socket.id]))
       //console.log("map mein hai", users_in);
       //console.log(`disconnect hua from room id ${users_in[users[socket.id]]}`)
       //socket.broadcast.emit('user-disconnected', users[socket.id])
-      socket.to(users_in.get(Ussers[socket.id])).emit('user-disconnected', users_id.get(Ussers[socket.id]))
+      // console.log(`bande hain : ${numClients[users_in.get(Ussers[socket.id])] - 1}`)
+      socket.to(users_in.get(Ussers[socket.id])).emit('user-disconnected', {name: users_id.get(Ussers[socket.id]), numP: numClients[users_in.get(Ussers[socket.id])] - 1})
       users_in.delete(Ussers[socket.id])
       users_id.delete(Ussers[socket.id])
       delete Ussers[socket.id]
