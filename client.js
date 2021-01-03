@@ -1,4 +1,7 @@
 var socket = io();
+// const socket = require('./soket')
+// import socket from './soket'
+console.log(socket);
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
 const messageInput = document.getElementById('message-input')
@@ -36,6 +39,7 @@ function scrollToBottom3() {
 // scrollToRight();
 
 var params;
+var peopl;
 
 socket.on('connect', () => {
 	console.log('connected to server');
@@ -53,21 +57,47 @@ socket.on('connect', () => {
 			}
 	})
 });
-// console.log(roomId)
-appendMessage('You joined')
+
+socket.on('alert_user', name => {
+  alert(`${name} tried to exit fullscreen`);
+})
+
+appendMessage('Welcome to session')
+
 //socket.emit('new-user', {name: name, roomId: params.room})
 
 socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
 
-socket.on('user-connected', name => {
-  appendMessage(`${name} connected`)
+function showData()
+{
+  // console.log("Hello World")
+  appendMessage(`People in Room ${peopl}`)
+}
+
+socket.on('in_face', num => {
+  peopl = num;
+  document.getElementById('cap_people').innerText = `Total people in room are ${peopl}`
+  document.getElementById('cap_people').display = 'inline-block'
+  // showData();
 })
 
-socket.on('user-disconnected', name => {
-  appendMessage(`${name} disconnected`)
+socket.on('user-connected', name => {
+  appendMessage(`${name} joined the room`)
 })
+
+socket.on('user-disconnected', people => {
+  appendMessage(`${people.name} left the room`)
+  peopl = people.numP;
+  document.getElementById('cap_people').innerText = `Total people in room are ${peopl}`
+  // showData()
+  // appendMessage(`People in Room : ${peopl}`)
+})
+
+// socket.on('user-disconnected', name => {
+//   appendMessage(`${name} left the room`)
+// })
 
 
 const editor = getEl("editor")
@@ -102,11 +132,13 @@ messageForm.addEventListener('submit', e => {
   })
   
   function appendMessage(message) {
-	// const messageElement1 = document.createElement('div')
-	const messageElement = document.createElement('div')
+  // const messageElement1 = document.createElement('div')
+  // div {text-align: center;}
+  const messageElement = document.createElement('div')
+  // messageElement {text-align: center;}
 	// messageElement1.appendChild(messageElement)
 	// messageElement1.style.backgroundColor = "none"
-	// messageElement1.style.width = 495 + 'px'
+	 //messageElement1.style.width = 100 + 'px'
 	messageElement.innerText = message
 	messageContainer.append(messageElement)
 	// messageElement.style.border = "2px solid #24292e"
@@ -122,14 +154,13 @@ messageForm.addEventListener('submit', e => {
 	// messageElement1.style.backgroundColor = "none"
 	messageElement.innerText = message
 	messageContainer.append(messageElement)
-	messageElement.style.marginLeft = 240 + "px"
+	messageElement.style.marginLeft = 320 + "px"
 	messageElement.style.display = "block"
 	// messageElement.style.float = "right"
 	// messageElement.style.border = "2px solid #24292e" 
 	// messageElement.style.boderRadius = 20 + "px"
 	scrollToBottom3()
   }
-
 
 
 language.addEventListener('change', (evt3) => {
@@ -160,7 +191,7 @@ socket.on('message', (data) => {
 	else if(data.id == 2) 
 		output.value = data.msg
 	else if(data.id == 3)
-		language.value = data.msg
+    language.value = data.msg
 	scrollToBottom();
 	scrollToBottom1();
 	scrollToBottom2();
