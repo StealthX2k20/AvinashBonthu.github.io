@@ -72,8 +72,8 @@ io.on('connection', (socket) => {
     //io.to(params.room).emit('updateUsersList',users.getUserList(params.room));
     // console.log(`aya numhai ${numClients[params.room]}`)     
     socket.to(params.room).emit('user-connected', params.name/*, numP: numClients[params.room]*/);
-    io.to(params.room).emit('in_face', numClients[params.room]);}
-    // callback();
+    io.to(params.room).emit('in_face', numClients[params.room]);
+    }
   })
 
   // socket.to(PARAMS).emit('user-connected', {name: PARAMS_NAME, numP: numClients[PARAMS]});
@@ -102,6 +102,16 @@ io.on('connection', (socket) => {
 //       numClients[ROOMID]--;
 //     console.log(numClients)
 //   })
+
+    socket.on('noCheat', () =>
+    {
+      socket.to(users_in.get(Ussers[socket.id])).emit('cheating', {name: users_id.get(Ussers[socket.id]), num : 0})
+    })
+
+    socket.on('cheat', () => 
+    {
+      socket.to(users_in.get(Ussers[socket.id])).emit('cheating', {name: users_id.get(Ussers[socket.id]), num : 1})
+    })
 
      socket.on('send-chat-message', message => {
     //socket.join(message.roomId)
@@ -165,6 +175,8 @@ io.on('connection', (socket) => {
       socket.emit('output', (error))
     else
       socket.emit('output', (body))
+
+      socket.to(users_in.get(Ussers[socket.id])).emit('loadIt', 0);
   });
   }
 
@@ -172,7 +184,9 @@ io.on('connection', (socket) => {
       console.log(code.code)
       console.log(code.inp)
       console.log(code.lang)
-  compile(code.code, code.inp, code.lang)
+
+      socket.to(users_in.get(Ussers[socket.id])).emit('loadIt', 1);
+      compile(code.code, code.inp, code.lang)
   })
     
     socket.on('disconnect', (evt) => {
