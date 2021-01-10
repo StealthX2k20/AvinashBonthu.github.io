@@ -70,11 +70,6 @@ socket.on('chat-message', data => {
   appendMessage(`${data.name}: ${data.message}`)
 })
 
-function showData()
-{
-  // console.log("Hello World")
-  appendMessage(`People in Room ${peopl}`)
-}
 
 socket.on('in_face', num => {
   peopl = num;
@@ -95,6 +90,15 @@ socket.on('user-disconnected', people => {
   // appendMessage(`People in Room : ${peopl}`)
 })
 
+socket.on('loadIt', (num) => {
+  //console.log('working')
+  if(num == 1)
+  document.querySelector(".loader").style.display = "inline-block"
+
+  else 
+  document.querySelector(".loader").style.display = "none"
+})
+
 // socket.on('user-disconnected', name => {
 //   appendMessage(`${name} left the room`)
 // })
@@ -105,7 +109,69 @@ const output = getEl("output_text")
 const input = getEl("input_text")
 const language = getEl("language")
 
+const preResult = "Running..."
+
+document.addEventListener(
+  "fullscreenchange",
+  function () {
+    if (document.fullscreenElement) {
+      socket.emit('noCheat')
+    }
+
+    else{
+      socket.emit('cheat')
+    }
+  })
+
+  document.addEventListener(
+    "mozfullscreenchange",
+    function () {
+      if (document.mozFullScreen) {
+        socket.emit('noCheat')
+      }
+  
+      else{
+        socket.emit('cheat')
+      }
+    })
+
+    document.addEventListener(
+      "webkitfullscreenchange",
+      function () {
+        if (document.webkitIsFullScreen) {
+          socket.emit('noCheat')
+      }
+  
+      else{
+        socket.emit('cheat')
+      }
+    })
+    
+ socket.on('cheating', (val) => {
+   if(val.num == 1)
+   {
+    document.getElementById("report").innerText = `${val.name} exited the full screen` 
+    document.getElementById("report").style.display = "inline";
+    document.getElementById("select_div").style.marginLeft = "9.2%";
+   }
+
+   else
+   {
+     console.log('Its working, yay!')
+    document.getElementById("report").innerText = ""
+    // document.getElementById("report").style.display = "none";
+    if(document.fullscreenElement)
+    document.getElementById("cap_people").style.marginTop = "-1.9%"
+
+    else
+    document.getElementById("cap_people").style.marginTop = "0.0%"
+		document.getElementById("select_div").style.marginLeft = "50.2%";
+   }
+ })
+
 document.querySelector("#execute").addEventListener('click',(evt)=>{
+  output.value = preResult;
+  socket.send({msg: preResult, id:2});
 	document.querySelector(".loader").style.display = "inline-block"
 	const code = editor.value;
 	const inp = input.value;
@@ -113,11 +179,12 @@ document.querySelector("#execute").addEventListener('click',(evt)=>{
 	console.log(code)
 	socket.emit('news',{code,inp,lang})
 	socket.on('output', (msg)=> {
+    document.querySelector(".loader").style.display = "none"
 		console.log(msg.output)
 		output.value = msg.output
 		const text = output.value
 		socket.send({msg:text, id:2})
-		document.querySelector(".loader").style.display = "none"
+		// document.querySelector(".loader").style.display = "none"
 	})
 	//compile(code)
 })
@@ -125,10 +192,15 @@ document.querySelector("#execute").addEventListener('click',(evt)=>{
 
 messageForm.addEventListener('submit', e => {
 	e.preventDefault()
-	const message = messageInput.value
+  let message = messageInput.value
+  message = message.trim()
+
+  if(message.length > 0){
+  // console.log(`length hai ${message.length}`)
 	appendMessage1(`You: ${message}`)
 	socket.emit('send-chat-message', {message: message, roomId: params.room})
-	messageInput.value = ''
+  messageInput.value = ''
+  }
   })
   
   function appendMessage(message) {
