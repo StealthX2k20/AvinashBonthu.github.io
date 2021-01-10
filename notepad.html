@@ -143,15 +143,25 @@
       }
 
       #cap_people{
-        display: hidden; 
-        /* border: 3px solid black;  */
-        width:15%; 
+        display: inline;
+        width:50%; 
         float: left; 
-        margin-top: -2.15%; 
+        margin-top: -1.9%; 
         height:100%;  
         text-align: left; 
         font-size: large; 
-        margin-right: 80%; 
+        /* margin-left: 30%;  */
+        font-weight: 600;
+      }
+
+      #report{
+        display: none; 
+        width:15%;
+        /* margin-top: 5%;  */
+        height:100%;  
+        text-align: left; 
+        font-size: large; 
+        margin-left: 21%; 
         font-weight: 600;
       }
 
@@ -164,6 +174,11 @@
         /* height: 500px; */
         /* margin-top: 400px; */
         /* margin-left: 60%; */
+      }
+
+      #select_div{
+        display: inline;
+        margin-left: 50.2%
       }
 
       /*#right_part {
@@ -198,7 +213,11 @@
 
     <div class="box1">
       <div class="header2">
-        <div class="select_div" style="initial-flex;">
+        <span id="report" style="color: red;">
+          
+        </span>
+        
+        <div id="select_div">
           <select class="select" id="language">
             <option disabled="disabled" visibility="hidden">
               Select a language.
@@ -281,7 +300,7 @@
         <div id="message-container"></div>
       </div>
       <form id="send-container">
-        <div style="display: inline;"><input type="text" id="message-input" autocomplete="off"  style="width: 90%; height: 37px; margin-top: 9px;"/></div>
+        <div style="display: inline;"><input type="text" id="message-input" autocomplete="off"  placeholder= "Type your message here..." style="width: 90%; height: 37px; margin-top: 9px;"/></div>
         <div style="display:inline; margin-top: -1%;"><button type="submit" id="send-button" style="background-color: #24292e; width:9%;"> <img src="chatfin-removebg-preview.png" style="width: 100%; height:100%; margin: 0% 0% 0% 0%;"> </button>
         </div>
         </form>
@@ -298,10 +317,18 @@
             seconds--;
             document.getElementById("closing").innerText = `Change to full screen else exiting in ${seconds} seconds...`;
             
-            if (seconds <= 0 || document.fullscreen == true) {
-              document.getElementById('closing').style.display = 'none'
-					    document.getElementById('MyClockDisplay').style.marginLeft = 74.38 + "%"
-              clearInterval(countdown);}
+            if (document.fullscreen == true) {
+                document.getElementById("closing").style.display = "none";
+                document.getElementById("MyClockDisplay").style.marginLeft =
+				// window.close();
+				74.38 + "%";
+                clearInterval(countdown);
+			  }
+			  
+			  else if(seconds <= 0)
+			  {
+				  window.close();
+			  }
             
             document.addEventListener("keydown", (e) => {
               if(e.keyCode == 122)
@@ -317,7 +344,6 @@
           }
         
       timer();
-      
 
       function showTime() {
 
