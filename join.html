@@ -2,8 +2,10 @@
 <html>
 <head>
 	<title>Join | session</title>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="icon" href="d1.png" type="image/gif" sizes="16x16">
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="./styles.css">
 	<!-- <script type="text/javascript">
     history.pushState(null, null, location.href);
@@ -16,7 +18,7 @@
 <body class="centered-form">
 
 	<!-- <div class="centered-form__form"> -->
-		<form action="/notepad.html" class="box">
+		<form name="myDetails" action="/notepad.html"  onsubmit = "return validate()" class="box">
 			<!-- <div class="form-field"> --><h2>Join Room</h2></div>
 	 		<div class="form-field">
 				<!-- <label>Your name</label> -->
@@ -32,5 +34,40 @@
 		</form>
 	<!-- </div> -->
 
+	<script type="text/javascript">
+	
+	function validate(){
+		let user_name = document.forms["myDetails"]["name"].value;
+		let room_id = document.forms["myDetails"]["room"].value;
+
+		user_name = user_name.trim();
+		room_id = room_id.trim();
+
+		if(user_name.length == 0 && room_id.length == 0)
+		{
+			document.forms["myDetails"]["name"].value = ""
+			document.forms["myDetails"]["room"].value = ""
+			alert("Name and Room ID must be filled")
+			return false;
+		}
+
+		if(user_name.length == 0)
+		{
+			document.forms["myDetails"]["name"].value = ""
+			alert("Name must be filled");
+			return false;
+		}
+
+		if(room_id.length == 0)
+		{
+			document.forms["myDetails"]["room"].value = ""
+			alert("Room ID must be filled");
+			return false;
+		}
+
+		return true;
+	}
+
+	</script>
 </body>
 </html>
