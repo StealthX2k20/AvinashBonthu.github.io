@@ -195,7 +195,7 @@
       <div class="logo">
         
         <img class="image_class" src="dash1.png" placeholder="DASH logo" />
-        <p id="closing" style="display: inline-flex;">Change to full screen else exiting in 10 seconds...</p>
+        <p id="closing" style="display: inline-flex;">Press F11 else exiting in 10 seconds...</p>
     
         <!-- <script>
         console(`running script`)
@@ -307,6 +307,27 @@
     </div>
 
     <script type="text/javascript">
+
+      async function checker(){
+      const link = document.URL;
+      
+      let promise = new Promise((resolve, reject) => {
+      if(link.includes('name') && link.includes('room'))
+      {
+        resolve();
+      }
+
+      else
+      {
+        window.location.replace('main-page.html')
+        resolve();
+      }})
+
+      await promise;
+     }
+
+     checker();
+
       function confirmation() {
            window.close();
       }
@@ -315,7 +336,7 @@
       function timer(){
           let countdown = setInterval(function() {
             seconds--;
-            document.getElementById("closing").innerText = `Change to full screen else exiting in ${seconds} seconds...`;
+            document.getElementById("closing").innerText = `Press F11 else exiting in ${seconds} seconds...`;
             
             if (document.fullscreen == true) {
                 document.getElementById("closing").style.display = "none";
@@ -327,7 +348,7 @@
 			  
 			  else if(seconds <= 0)
 			  {
-				  window.close();
+				  window.parent.close();
 			  }
             
             document.addEventListener("keydown", (e) => {
