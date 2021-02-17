@@ -18,7 +18,7 @@
 <body class="centered-form">
 
 	<!-- <div class="centered-form__form"> -->
-		<form name="myDetails" action="/notepad.html"  onsubmit = "return validate()" class="box">
+		<form name="myDetails" action="JavaScript:openNotepad()"  onsubmit = "return validate()" class="box">
 			<!-- <div class="form-field"> --><h2>Join Room</h2></div>
 	 		<div class="form-field">
 				<!-- <label>Your name</label> -->
@@ -35,6 +35,11 @@
 	<!-- </div> -->
 
 	<script type="text/javascript">
+	function openNotepad()
+	{
+		var child = window.open(`/notepad.html?name=${document.forms["myDetails"]["name"].value}&room=${document.forms["myDetails"]["room"].value}`);
+		window.close();
+	}
 	
 	function validate(){
 		let user_name = document.forms["myDetails"]["name"].value;
