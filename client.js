@@ -31,12 +31,6 @@ function scrollToBottom3() {
   let messages = document.querySelector("#message-container").lastElementChild;
   messages.scrollIntoView(({ behavior: 'smooth', block: 'nearest', inline: 'start' }));
   }
-  // scrollToBottom3()
-// function scrollToRight() {
-// 	var textarea = document.getElementById('editor');
-// 	textarea.scrollLeft = textarea.scrollWidth;
-// }
-// scrollToRight();
 
 var params;
 var peopl;
@@ -63,6 +57,8 @@ socket.on('alert_user', name => {
 })
 
 appendMessage('Welcome to session')
+appendMessage('This is the chatbox')
+
 
 //socket.emit('new-user', {name: name, roomId: params.room})
 
