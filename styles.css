@@ -124,7 +124,7 @@ body {
   color: #24292e;
 }
 .button:hover:before {
-  width: 100%; 
+  width: 100%;
 }
 
 .button:active {
