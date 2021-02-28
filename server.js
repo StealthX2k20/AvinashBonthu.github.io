@@ -12,11 +12,23 @@ let users = new Users();
 const {isRealString} = require('./isRealString');
 const port = process.env.PORT || 3000;
 const request = require('request');
+const bodyParser = require('body-parser')
 
 
-
-
+app.use(bodyParser.json())
 app.use(express.static(public_path));
+
+const logRequestStart = (req, res, next) => {
+  console.info(`${req.method} ${req.originalUrl}`)
+  next()
+}
+
+app.use(logRequestStart)
+
+// app.all('/notepad', (req, res, next) => {
+//   console.log(`req is ${req.body}`)
+//   console.log(`abc`)
+// })
 
 const Ussers = {}
 var users_in = new Map()
@@ -190,10 +202,8 @@ io.on('connection', (socket) => {
   })
     
     socket.on('disconnect', (evt) => {
-    log('some people left')
-    
-  })
-    
+    log('some people left') 
+    })
 })
 
 
